@@ -10,20 +10,30 @@ namespace ClassRoom
     {
         static void Main(string[] args)
         {
-            DateTime justDate = new DateTime(2018, 04, 18);
-            KlasseRum klasserum1 = new KlasseRum { KlasseNavn = "3B", Klasseliste = new List<Studerende>(), SemesterStart = justDate};
+            KlasseRum klasseRum1 = new KlasseRum();
+            klasseRum1.KlasseNavn = "3B";
+            klasseRum1.SemesterStart = new DateTime(2018, 09, 04);
+            
+            Studerende Studerende1 = new Studerende("Jacob", 16, 08);
+            Studerende Studerende2 = new Studerende("Lasse", 16, 08);
+            Studerende Studerende3 = new Studerende("Marcel", 16, 08);
 
-            klasserum1.Klasseliste.Add(new Studerende("Jacob", 08, 1996));
-            klasserum1.Klasseliste.Add(new Studerende("Lasse", 09, 1996));
-            klasserum1.Klasseliste.Add(new Studerende("Marcel", 10, 1996));
+            klasseRum1.Klasseliste.Add(Studerende1);
+            klasseRum1.Klasseliste.Add(Studerende2);
+            klasseRum1.Klasseliste.Add(Studerende3);
 
-            Console.WriteLine(klasserum1.KlasseNavn);
-            Console.WriteLine(klasserum1.SemesterStart);
-            Console.WriteLine(klasserum1.Klasseliste.ToString());
-            foreach (var stud in klasserum1.Klasseliste)
+            foreach (var studerende in klasseRum1.Klasseliste)
             {
-                Console.WriteLine(stud.ToString());
+                Console.WriteLine($"Disse elever går her: {studerende.Navn} og har fødselsdag: {studerende.Fødselsdag}/{studerende.Fødselsmåned} og går i klassen {klasseRum1.KlasseNavn} som starter {klasseRum1.SemesterStart}");
             }
+
+            foreach (var studerende in klasseRum1.Klasseliste)
+            {
+                Console.WriteLine(studerende.Årstid());
+            }
+
+
+            Console.ReadLine();
         }
     }
 }
